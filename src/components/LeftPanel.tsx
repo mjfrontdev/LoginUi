@@ -1,4 +1,5 @@
 import { ArrowLeft2, ArrowRight2 } from 'iconsax-reactjs'
+import StarField from './StarField'
 
 interface LeftPanelProps {
   selectedWorks: string
@@ -10,28 +11,13 @@ interface LeftPanelProps {
 const LeftPanel = ({ selectedWorks, signUpButton, joinUs, onSignUpClick }: LeftPanelProps) => {
   return (
     <div className="relative lg:w-1/2 bg-gradient-to-b from-slate-900 via-indigo-900 to-purple-900 p-6 md:p-8 lg:p-12 flex flex-col justify-between min-h-[400px] lg:min-h-[600px] overflow-hidden">
-      {/* Stars Background */}
-      <div className="absolute inset-0">
-        {[...Array(30)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute rounded-full bg-white"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 60}%`,
-              width: `${Math.random() * 3 + 1}px`,
-              height: `${Math.random() * 3 + 1}px`,
-              opacity: Math.random() * 0.8 + 0.2,
-              animation: `twinkle ${Math.random() * 3 + 2}s infinite`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Stars Background with Canvas */}
+      <StarField />
 
       {/* Large Crescent Moon/Planet */}
-      <div className="absolute top-10 right-8 md:top-16 md:right-12 w-32 h-32 md:w-48 md:h-48">
+      <div className="absolute top-10 right-8 md:top-16 md:right-12 w-32 h-32 md:w-48 md:h-48 animate-float">
         <div className="relative w-full h-full">
-          <div className="absolute inset-0 bg-gradient-to-br from-yellow-200/30 to-orange-300/20 rounded-full blur-xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-yellow-200/30 to-orange-300/20 rounded-full blur-xl animate-pulse-slow"></div>
           <svg viewBox="0 0 200 200" className="w-full h-full">
             <circle cx="100" cy="100" r="80" fill="url(#moonGradient)" opacity="0.9" />
             <defs>
@@ -114,17 +100,17 @@ const LeftPanel = ({ selectedWorks, signUpButton, joinUs, onSignUpClick }: LeftP
       <div className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-red-500/10 rounded-full blur-3xl"></div>
 
       {/* Content */}
-      <div className="relative z-10">
+      <div className="relative z-10 animate-fade-in-up" style={{ animationDelay: '0.2s', opacity: 0 }}>
         <div className="flex justify-between items-start mb-8">
           <h2 className="text-white text-lg md:text-xl font-semibold">{selectedWorks}</h2>
           <div className="flex gap-2 md:gap-3">
             <button 
               onClick={onSignUpClick}
-              className="px-3 md:px-4 py-2 text-white border border-white/30 rounded-lg text-sm md:text-base hover:bg-white/10 transition-colors"
+              className="px-3 md:px-4 py-2 text-white border border-white/30 rounded-lg text-sm md:text-base hover:bg-white/10 hover:scale-105 active:scale-95 transition-all duration-200"
             >
               {signUpButton}
             </button>
-            <button className="px-3 md:px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg text-sm md:text-base hover:bg-white/30 transition-colors">
+            <button className="px-3 md:px-4 py-2 bg-white/20 backdrop-blur-sm text-white rounded-lg text-sm md:text-base hover:bg-white/30 hover:scale-105 active:scale-95 transition-all duration-200">
               {joinUs}
             </button>
           </div>
@@ -132,10 +118,10 @@ const LeftPanel = ({ selectedWorks, signUpButton, joinUs, onSignUpClick }: LeftP
       </div>
 
       {/* Bottom Section */}
-      <div className="relative z-10 flex justify-between items-end">
+      <div className="relative z-10 flex justify-between items-end animate-fade-in-up" style={{ animationDelay: '0.4s', opacity: 0 }}>
         {/* Profile Card */}
-        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4">
-          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg md:text-xl">
+        <div className="bg-white/10 backdrop-blur-md rounded-2xl p-3 md:p-4 flex items-center gap-3 md:gap-4 hover:bg-white/15 transition-all duration-300 hover:scale-105 cursor-pointer">
+          <div className="w-12 h-12 md:w-16 md:h-16 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white font-bold text-lg md:text-xl shadow-lg">
             A
           </div>
           <div>
@@ -146,10 +132,10 @@ const LeftPanel = ({ selectedWorks, signUpButton, joinUs, onSignUpClick }: LeftP
 
         {/* Navigation Arrows */}
         <div className="flex gap-2">
-          <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors">
+          <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 hover:scale-110 active:scale-95 transition-all duration-200">
             <ArrowLeft2 size="20" color="#ffffff" />
           </button>
-          <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 transition-colors">
+          <button className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center hover:bg-white/20 hover:scale-110 active:scale-95 transition-all duration-200">
             <ArrowRight2 size="20" color="#ffffff" />
           </button>
         </div>

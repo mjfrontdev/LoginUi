@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, ReactNode } from 'react'
-import { Language } from '../utils/i18n'
+import { Language, translations } from '../utils/i18n'
 
 interface LanguageContextType {
   language: Language
@@ -14,8 +14,7 @@ export const LanguageProvider = ({ children }: { children: ReactNode }) => {
 
   const t = (key: string): string => {
     const keys = key.split('.')
-    const translations = require('../utils/i18n').translations[language]
-    let value: any = translations
+    let value: any = translations[language]
     
     for (const k of keys) {
       value = value?.[k]
